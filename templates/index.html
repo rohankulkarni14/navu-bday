@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>For Navya ♡</title>
+
+    <meta name="description"
+          content="A little something made just for Navya.">
+
+    <!-- Fonts -->
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     OPENING SCREEN
+====================================================== -->
+
+<div class="opening-screen" id="openingScreen">
+
+    <div class="opening-noise"></div>
+
+    <div class="opening-content">
+
+        <p class="opening-small">
+            A little something
+        </p>
+
+        <h1>
+            For<br>
+            <span>Navya.</span>
+        </h1>
+
+        <p class="opening-description">
+            Take your time.
+            <br>
+            This is just for you.
+        </p>
+
+        <button
+            class="open-button"
+            id="openButton">
+
+            <span>Open your surprise</span>
+
+            <span class="open-arrow">
+                →
+            </span>
+
+        </button>
+
+    </div>
+
+    <div class="opening-bottom">
+        made with love · Roro ♡
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     MUSIC
+====================================================== -->
+
+<audio
+    id="dildaara"
+    preload="auto">
+
+    <source
+        src="{{ url_for('static', filename='music/dildaara.mp3') }}"
+        type="audio/mpeg">
+
+</audio>
+
+
+
+<!-- =====================================================
+     FLOATING HEARTS
+====================================================== -->
+
+<div
+    class="hearts-container"
+    id="heartsContainer">
+</div>
+
+
+
+<!-- =====================================================
+     HERO
+====================================================== -->
+
+<header class="hero">
+
+    <div class="hero-glow"></div>
+
+    <div class="hero-noise"></div>
+
+    <div class="hero-content">
+
+        <p class="hero-small">
+            Today is about
+        </p>
+
+        <h1>
+            Navya
+        </h1>
+
+        <p class="hero-subtitle">
+            Navu · Vyaa · My favourite person
+        </p>
+
+        <div class="hero-scroll">
+
+            <span>
+                keep scrolling
+            </span>
+
+            <div class="scroll-line"></div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<main>
+
+
+<!-- =====================================================
+     INTRO
+====================================================== -->
+
+<section class="intro section">
+
+    <div class="section-inner narrow">
+
+        <p class="eyebrow">
+            15 · OCTOBER
+        </p>
+
+        <h2>
+            Someone very<br>
+            <em>special</em> was born.
+        </h2>
+
+        <p class="intro-text">
+            And somehow, life decided that I should get lucky
+            enough to know her.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     TODAY IS ABOUT HER
+====================================================== -->
+
+<section class="about-her section">
+
+    <div class="section-inner">
+
+        <div class="section-heading">
+
+            <div>
+
+                <p class="eyebrow">
+                    Today
+                </p>
+
+                <h2>
+                    It's about<br>
+                    <em>her.</em>
+                </h2>
+
+            </div>
+
+            <p class="heading-description">
+                Not about anything else.
+                <br>
+                Just the girl who deserves
+                <br>
+                an entire day to herself.
+            </p>
+
+        </div>
+
+
+        <div class="solo-gallery">
+
+            <div class="photo-card photo-tall reveal">
+
+                <img
+                    src="{{ url_for('static', filename='images/navya1.jpeg') }}"
+                    alt="Navya1">
+
+            </div>
+
+
+            <div class="photo-card photo-square reveal delay-1">
+
+                <img
+                    src="{{ url_for('static', filename='images/navya2.jpeg') }}"
+                    alt="Navya2">
+
+            </div>
+
+
+            <div class="photo-card photo-tall reveal delay-2">
+
+                <img
+                    src="{{ url_for('static', filename='images/navya3.jpeg') }}"
+                    alt="Navya3">
+
+            </div>
+
+
+            <div class="photo-card photo-wide reveal delay-3">
+
+                <img
+                    src="{{ url_for('static', filename='images/navya4.jpeg') }}"
+                    alt="Navya4">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CHILDHOOD / DANCE
+====================================================== -->
+
+<section class="story section">
+
+    <div class="section-inner">
+
+        <div class="story-grid">
+
+            <div class="story-image reveal">
+
+                <div class="image-frame">
+
+                    <img
+                        src="{{ url_for('static', filename='images/couple1.jpeg') }}"
+                        alt="Rohan and Navya Dance">
+
+                    <span class="image-number">
+                        01
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="story-copy reveal delay-1">
+
+                <p class="eyebrow">
+                    Before everything
+                </p>
+
+                <h2>
+                    We were<br>
+                    already <em>dancing.</em>
+                </h2>
+
+                <p>
+                    We didn't really talk when we were kids.
+                    Somehow, though, we always ended up being
+                    dance partners.
+                </p>
+
+                <p>
+                    It's funny how life can quietly put someone
+                    in your story long before you realise how
+                    important they're going to become.
+                </p>
+
+                <div class="story-signature">
+                    Roro ♡ Navu
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     MEMORIES
+====================================================== -->
+
+<section class="memories section">
+
+    <div class="section-inner">
+
+        <div class="center-heading">
+
+            <p class="eyebrow">
+                Little moments
+            </p>
+
+            <h2>
+                Us, in <em>frames.</em>
+            </h2>
+
+            <p>
+                Some moments deserve to stay forever.
+            </p>
+
+        </div>
+
+
+        <div class="memory-grid">
+
+
+            <div class="memory-card memory-large reveal">
+
+                <img
+                    src="{{ url_for('static', filename='images/couple2.jpg') }}"
+                    alt="Rohan and Navya 1">
+
+            </div>
+
+
+            <div class="memory-card reveal delay-1">
+
+                <img
+                    src="{{ url_for('static', filename='images/couple3.jpg') }}"
+                    alt="Rohan and Navya 2">
+
+            </div>
+
+
+            <div class="memory-card reveal delay-2">
+
+                <img
+                    src="{{ url_for('static', filename='images/couple4.jpeg') }}"
+                    alt="Rohan and Navya 3">
+
+            </div>
+
+
+            <div class="memory-card memory-wide reveal delay-1">
+
+                <img
+                    src="{{ url_for('static', filename='images/couple5.jpg') }}"
+                    alt="Rohan and Navya 4">
+
+            </div>
+
+
+            <div class="memory-card reveal delay-2">
+
+                <img
+                    src="{{ url_for('static', filename='images/couple6.jpg') }}"
+                    alt="Rohan and Navya 5">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     ROUGH PHASE
+====================================================== -->
+
+<section class="rough section">
+
+    <div class="section-inner">
+
+        <div class="rough-content reveal">
+
+            <p class="eyebrow">
+                And then...
+            </p>
+
+            <h2>
+                We got through<br>
+                the <em>rough parts.</em>
+            </h2>
+
+            <div class="rough-line"></div>
+
+            <p>
+                Every relationship has moments that aren't
+                perfect.
+            </p>
+
+            <p>
+                But one of my favourite things about us is that
+                we didn't let those moments become the ending.
+            </p>
+
+            <p class="strong-text">
+                We found our way back.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     REASONS
+====================================================== -->
+
+<section class="reasons section">
+
+    <div class="section-inner">
+
+        <div class="section-heading">
+
+            <div>
+
+                <p class="eyebrow">
+                    Things I love
+                </p>
+
+                <h2>
+                    Why you're<br>
+                    <em>you.</em>
+                </h2>
+
+            </div>
+
+            <p class="heading-description">
+                I could keep writing this list forever.
+            </p>
+
+        </div>
+
+
+        <div class="reasons-list">
+
+
+            <div class="reason reveal">
+
+                <span>
+                    01
+                </span>
+
+                <div>
+
+                    <h3>
+                        Your heart.
+                    </h3>
+
+                    <p>
+                        The way you care, even when nobody
+                        asks you to.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="reason reveal">
+
+                <span>
+                    02
+                </span>
+
+                <div>
+
+                    <h3>
+                        Your energy.
+                    </h3>
+
+                    <p>
+                        Somehow you make ordinary moments
+                        feel like memories.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="reason reveal">
+
+                <span>
+                    03
+                </span>
+
+                <div>
+
+                    <h3>
+                        Your everything.
+                    </h3>
+
+                    <p>
+                        Honestly, from your hair to your toes,
+                        I love everything about you.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="reason reveal">
+
+                <span>
+                    04
+                </span>
+
+                <div>
+
+                    <h3>
+                        Us.
+                    </h3>
+
+                    <p>
+                        Because being your partner is one of
+                        my favourite things in this world.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     BAAT KHATAM
+====================================================== -->
+
+<section class="easter section">
+
+    <div class="section-inner">
+
+        <div class="easter-box reveal">
+
+            <p class="eyebrow">
+                Our official argument ending
+            </p>
+
+            <button
+                class="baat-button"
+                id="baatButton">
+
+                <span>
+                    BAAT KHATAM
+                </span>
+
+                <small>
+                    click it
+                </small>
+
+            </button>
+
+            <p
+                class="baat-response"
+                id="baatResponse">
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     VIDEO INTRO
+====================================================== -->
+
+<section class="video-intro section">
+
+    <div class="section-inner narrow">
+
+        <p class="eyebrow">
+            Before the end
+        </p>
+
+        <h2>
+            A little piece<br>
+            of <em>us.</em>
+        </h2>
+
+        <p class="video-intro-text">
+            I wanted to make something you could watch
+            whenever you miss us.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     VIDEO
+====================================================== -->
+
+<section class="couple-video-section">
+
+    <div class="video-wrapper reveal">
+
+        <video
+            id="coupleVideo"
+            class="couple-video"
+            controls
+            playsinline
+            preload="metadata">
+
+            <source
+                src="{{ url_for('static', filename='video/navya-video.mp4') }}"
+                type="video/mp4">
+
+            Your browser does not support this video.
+
+        </video>
+
+
+        <div class="video-overlay">
+
+            <p>
+                Roro ♡ Navu
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="video-caption">
+
+        <span>
+            OUR LITTLE WORLD
+        </span>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     LETTER
+====================================================== -->
+
+<section class="letter section">
+
+    <div class="section-inner narrow">
+
+        <p class="eyebrow">
+            One last thing
+        </p>
+
+        <h2>
+            Dear <em>Navu,</em>
+        </h2>
+
+
+        <div class="letter-content reveal">
+
+            <p>
+                Happy Birthday to the girl who somehow became
+                such a huge part of my life.
+            </p>
+
+
+            <p>
+                I don't think I say it enough, but I genuinely
+                love everything about you. From your hair to
+                your toes. Every little thing that makes you
+                <em>you.</em>
+            </p>
+
+
+            <p>
+                You've made some of my birthdays unforgettable.
+                You've given me memories that I'll always carry
+                with me, and you've been there through the good
+                parts and the not-so-good ones too.
+            </p>
+
+
+            <p>
+                I hope today reminds you of something important:
+                <strong>you are amazing.</strong>
+            </p>
+
+
+            <p>
+                You're great at what you do. You're loved more
+                than you realise. And to me, you're literally
+                perfect.
+            </p>
+
+
+            <p>
+                I'm really, really glad you were born on this
+                day.
+            </p>
+
+
+            <p class="letter-final">
+                Happy Birthday, Navya.
+                <br>
+                My favourite person.
+            </p>
+
+
+            <div class="letter-sign">
+                — Roro ♡
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FINAL
+====================================================== -->
+
+<section class="finale section">
+
+    <div class="finale-glow"></div>
+
+    <div class="section-inner">
+
+        <p class="eyebrow">
+            15 · OCTOBER
+        </p>
+
+        <h2>
+            Today is<br>
+            <em>your day.</em>
+        </h2>
+
+        <p class="finale-text">
+            And I hope you never forget<br>
+            just how loved you are.
+        </p>
+
+        <div
+            class="final-heart"
+            id="finalHeart">
+
+            ♡
+
+        </div>
+
+        <p class="final-small">
+            Happy Birthday, Navu.
+        </p>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>

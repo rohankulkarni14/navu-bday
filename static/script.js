@@ -602,3 +602,145 @@ heartHoverElements.forEach(function (element) {
     });
 
 });
+
+/* =========================================================
+   FINAL SURPRISE VIDEO
+========================================================= */
+
+const wishingButton =
+    document.getElementById("wishingButton");
+
+const wishingVideoContainer =
+    document.getElementById("wishingVideoContainer");
+
+
+if (
+    wishingButton &&
+    wishingVideoContainer
+) {
+
+    wishingButton.addEventListener(
+        "click",
+        function () {
+            wishingButton.classList.add("fade-out");
+
+            /*
+             * Prevent creating the video multiple times.
+             */
+
+            if (
+                wishingVideoContainer
+                .querySelector("video")
+            ) {
+                return;
+            }
+
+
+            /*
+             * Create the video.
+             */
+
+            const wishingVideo =
+                document.createElement("video");
+
+
+            wishingVideo.className =
+                "wishing-video";
+
+
+            wishingVideo.id =
+                "wishingVideo";
+
+
+            wishingVideo.controls =
+                true;
+
+
+            wishingVideo.playsInline =
+                true;
+
+
+            /*
+             * Local video file.
+             */
+
+            const source =
+                document.createElement("source");
+
+
+            source.src =
+                "/static/video/wishing-navya.mp4";
+
+
+            source.type =
+                "video/mp4";
+
+
+            wishingVideo.appendChild(
+                source
+            );
+
+
+            /*
+             * Add video to the page.
+             */
+
+            wishingVideoContainer.appendChild(
+                wishingVideo
+            );
+
+
+            /*
+             * Reveal it.
+             */
+
+            requestAnimationFrame(
+                function () {
+
+                    wishingVideoContainer.classList.add(
+                        "show"
+                    );
+
+                }
+            );
+
+
+            /*
+             * Start playing immediately.
+             * The browser allows this because
+             * the video was created from a
+             * user click.
+             */
+
+            wishingVideo.play().catch(
+                function (error) {
+
+                    console.log(
+                        "Wishing video could not autoplay:",
+                        error
+                    );
+
+                }
+            );
+
+
+            /*
+             * Scroll naturally to the new video.
+             */
+
+            setTimeout(
+                function () {
+
+                    wishingVideo.scrollIntoView({
+                        behavior: "smooth",
+                        block: "center"
+                    });
+
+                },
+                300
+            );
+
+        }
+    );
+
+}

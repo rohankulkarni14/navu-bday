@@ -1336,3 +1336,105 @@ body * {
 .pixel-heart-cursor {
     cursor: none !important;
 }
+
+/* =========================================================
+   FINAL SURPRISE VIDEO
+========================================================= */
+
+.final-surprise-section {
+    width: 100%;
+    padding: 120px 24px 140px;
+    text-align: center;
+}
+
+.final-surprise-content {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.wishing-button {
+    border: none;
+    background: transparent;
+    padding: 20px 10px;
+    font-family: "Manrope", sans-serif;
+    font-size: clamp(24px, 4vw, 42px);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: inherit;
+    cursor: none !important;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+}
+
+.wishing-button:hover {
+    transform: translateX(6px);
+}
+
+.wishing-arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.wishing-button:hover .wishing-arrow {
+    transform: translateX(8px);
+}
+
+
+/* Video starts hidden */
+
+.wishing-video-container {
+    max-width: 1000px;
+    margin: 50px auto 0;
+
+    opacity: 0;
+    transform: translateY(30px);
+
+    max-height: 0;
+    overflow: hidden;
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease,
+        max-height 1s ease;
+}
+
+
+/* Video revealed after button click */
+
+.wishing-video-container.show {
+    opacity: 1;
+    transform: translateY(0);
+    max-height: 1000px;
+}
+
+
+/* Actual video */
+
+.wishing-video {
+    display: block;
+    width: 100%;
+    height: auto;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.15);
+}
+.wishing-button {
+    transition:
+        opacity 1.4s ease,
+        transform 1.4s ease;
+}
+
+.wishing-button.fade-out {
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+}

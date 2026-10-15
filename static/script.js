@@ -1,4 +1,23 @@
 /* =========================================================
+   ALWAYS OPEN AT THE TOP
+========================================================= */
+
+if ("scrollRestoration" in history) {
+    history.scrollRestoration = "manual";
+}
+
+function resetPageToTop() {
+    window.scrollTo(0, 0);
+}
+
+window.addEventListener("pageshow", function () {
+    resetPageToTop();
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    resetPageToTop();
+});
+/* =========================================================
    ELEMENTS
 ========================================================= */
 

@@ -47,7 +47,7 @@ document.body.classList.add("locked");
 
 if (openButton) {
     openButton.addEventListener("click", function () {
-
+window.scrollTo(0, 0);
         // Start Dildaara at 50% volume.
         if (audio) {
             audio.volume = 0.5;

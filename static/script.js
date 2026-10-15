@@ -603,144 +603,38 @@ heartHoverElements.forEach(function (element) {
 
 });
 
-/* =========================================================
-   FINAL SURPRISE VIDEO
-========================================================= */
 
-const wishingButton =
-    document.getElementById("wishingButton");
+/* Create the YouTube video */
 
-const wishingVideoContainer =
-    document.getElementById("wishingVideoContainer");
+const wishingVideo =
+    document.createElement("iframe");
 
+wishingVideo.className = "wishing-video";
+wishingVideo.id = "wishingVideo";
 
-if (
-    wishingButton &&
-    wishingVideoContainer
-) {
+wishingVideo.src =
+    "https://www.youtube.com/embed/zW6oFMEHHfY?autoplay=1&playsinline=1&rel=0";
 
-    wishingButton.addEventListener(
-        "click",
-        function () {
-            wishingButton.classList.add("fade-out");
+wishingVideo.title = "A special birthday surprise for Navya";
 
-            /*
-             * Prevent creating the video multiple times.
-             */
+wishingVideo.allow =
+    "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
 
-            if (
-                wishingVideoContainer
-                .querySelector("video")
-            ) {
-                return;
-            }
+wishingVideo.allowFullscreen = true;
+wishingVideo.referrerPolicy = "strict-origin-when-cross-origin";
 
+/* Add it to the existing page */
+wishingVideoContainer.appendChild(wishingVideo);
 
-            /*
-             * Create the video.
-             */
+/* Reveal the video */
+requestAnimationFrame(function () {
+    wishingVideoContainer.classList.add("show");
+});
 
-            const wishingVideo =
-                document.createElement("video");
-
-
-            wishingVideo.className =
-                "wishing-video";
-
-
-            wishingVideo.id =
-                "wishingVideo";
-
-
-            wishingVideo.controls =
-                true;
-
-
-            wishingVideo.playsInline =
-                true;
-
-
-            /*
-             * Local video file.
-             */
-
-            const source =
-                document.createElement("source");
-
-
-            source.src =
-                "/static/video/wishing-navya.mp4";
-
-
-            source.type =
-                "video/mp4";
-
-
-            wishingVideo.appendChild(
-                source
-            );
-
-
-            /*
-             * Add video to the page.
-             */
-
-            wishingVideoContainer.appendChild(
-                wishingVideo
-            );
-
-
-            /*
-             * Reveal it.
-             */
-
-            requestAnimationFrame(
-                function () {
-
-                    wishingVideoContainer.classList.add(
-                        "show"
-                    );
-
-                }
-            );
-
-
-            /*
-             * Start playing immediately.
-             * The browser allows this because
-             * the video was created from a
-             * user click.
-             */
-
-            wishingVideo.play().catch(
-                function (error) {
-
-                    console.log(
-                        "Wishing video could not autoplay:",
-                        error
-                    );
-
-                }
-            );
-
-
-            /*
-             * Scroll naturally to the new video.
-             */
-
-            setTimeout(
-                function () {
-
-                    wishingVideo.scrollIntoView({
-                        behavior: "smooth",
-                        block: "center"
-                    });
-
-                },
-                300
-            );
-
-        }
-    );
-
-}
+/* Scroll to the new video */
+setTimeout(function () {
+    wishingVideo.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+}, 300);

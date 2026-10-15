@@ -27,81 +27,41 @@ document.body.classList.add("locked");
 ========================================================= */
 
 if (openButton) {
+    openButton.addEventListener("click", function () {
 
-    openButton.addEventListener(
-        "click",
-        function () {
+        // Start Dildaara at 50% volume.
+        if (audio) {
+            audio.volume = 0.5;
+            audio.currentTime = 0;
 
-            /*
-             * This click is the user's interaction,
-             * so the browser allows Dildaara to start.
-             */
+            const playPromise = audio.play();
 
-            if (audio) {
-
-                audio.volume = 0.5;
-
-                audio.currentTime = 0;
-
-                const playPromise =
-                    audio.play();
-
-                if (playPromise !== undefined) {
-
-                    playPromise
-                        .then(function () {
-
-                            musicPlaying = true;
-
-                        })
-                        .catch(function (error) {
-
-                            console.log(
-                                "Audio could not start:",
-                                error
-                            );
-
-                        });
-
-                }
-
+            if (playPromise !== undefined) {
+                playPromise
+                    .then(function () {
+                        musicPlaying = true;
+                    })
+                    .catch(function (error) {
+                        console.log(
+                            "Audio could not start:",
+                            error
+                        );
+                    });
             }
-
-
-            /*
-             * Unlock the website.
-             */
-
-            document.body.classList.remove(
-                "locked"
-            );
-
-
-            openingScreen.classList.add(
-                "hide"
-            );
-
-
-            /*
-             * Start some floating hearts.
-             */
-
-            for (
-                let i = 0;
-                i < 8;
-                i++
-            ) {
-
-                setTimeout(
-                    createHeart,
-                    i * 180
-                );
-
-            }
-
         }
-    );
 
+        // Unlock the website.
+        document.body.classList.remove("locked");
+
+        if (openingScreen) {
+            openingScreen.classList.add("hide");
+        }
+
+        // Start floating hearts.
+        for (let i = 0; i < 8; i++) {
+            setTimeout(createHeart, i * 180);
+        }
+    });
 }
 
 
@@ -110,6 +70,7 @@ if (openButton) {
 ========================================================= */
 
 let musicPlaying = false;
+let videoHasBeenPlayed = false;
 
 
 /* =========================================================
@@ -117,16 +78,9 @@ let musicPlaying = false;
 ========================================================= */
 
 if (audio) {
-
-    audio.addEventListener(
-        "ended",
-        function () {
-
-            musicPlaying = false;
-
-        }
-    );
-
+    audio.addEventListener("ended", function () {
+        musicPlaying = false;
+    });
 }
 
 
@@ -137,48 +91,30 @@ if (audio) {
 const revealElements =
     document.querySelectorAll(".reveal");
 
-
-const revealObserver =
-    new IntersectionObserver(
-
+if ("IntersectionObserver" in window) {
+    const revealObserver = new IntersectionObserver(
         function (entries) {
-
-            entries.forEach(
-                function (entry) {
-
-                    if (
-                        entry.isIntersecting
-                    ) {
-
-                        entry.target.classList.add(
-                            "visible"
-                        );
-
-                        revealObserver.unobserve(
-                            entry.target
-                        );
-
-                    }
-
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    revealObserver.unobserve(entry.target);
                 }
-            );
-
+            });
         },
-
         {
             threshold: 0.12
         }
-
     );
 
-
-revealElements.forEach(
-    function (element) {
-
+    revealElements.forEach(function (element) {
         revealObserver.observe(element);
-
-    }
-);
+    });
+} else {
+    // Fallback for browsers without IntersectionObserver.
+    revealElements.forEach(function (element) {
+        element.classList.add("visible");
+    });
+}
 
 
 /* =========================================================
@@ -186,59 +122,33 @@ revealElements.forEach(
 ========================================================= */
 
 function createHeart() {
-
     if (!heartsContainer) {
         return;
     }
 
-    const heart =
-        document.createElement("span");
+    const heart = document.createElement("span");
 
-
-    heart.classList.add(
-        "floating-heart"
-    );
-
+    heart.classList.add("floating-heart");
 
     heart.innerHTML =
-        Math.random() > 0.5
-            ? "♡"
-            : "♥";
+        Math.random() > 0.5 ? "♡" : "♥";
 
-
-    heart.style.left =
-        Math.random() * 100 + "%";
-
+    heart.style.left = Math.random() * 100 + "%";
 
     heart.style.fontSize =
         (8 + Math.random() * 14) + "px";
 
-
     heart.style.animationDuration =
         (7 + Math.random() * 7) + "s";
 
+    heartsContainer.appendChild(heart);
 
-    heartsContainer.appendChild(
-        heart
-    );
-
-
-    setTimeout(
-        function () {
-
-            heart.remove();
-
-        },
-        16000
-    );
-
+    setTimeout(function () {
+        heart.remove();
+    }, 16000);
 }
 
-
-setInterval(
-    createHeart,
-    1900
-);
+setInterval(createHeart, 1900);
 
 
 /* =========================================================
@@ -246,165 +156,97 @@ setInterval(
 ========================================================= */
 
 const baatButton =
-    document.getElementById(
-        "baatButton"
-    );
+    document.getElementById("baatButton");
 
 const baatResponse =
-    document.getElementById(
-        "baatResponse"
-    );
+    document.getElementById("baatResponse");
 
+if (baatButton && baatResponse) {
+    baatButton.addEventListener("click", function () {
 
-if (baatButton) {
+        const responses = [
+            "Okay fine. Baat khatam. 😭",
+            "You win. Baat khatam. ♡",
+            "No arguments. Only Navya. 🤝",
+            "Fineeeee. BAAT KHATAM.",
+            "Roro has officially surrendered.",
+            "As always… baat khatam."
+        ];
 
-    baatButton.addEventListener(
-        "click",
-        function () {
-
-            const responses = [
-
-                "Okay fine. Baat khatam. 😭",
-
-                "You win. Baat khatam. ♡",
-
-                "No arguments. Only Navya. 🤝",
-
-                "Fineeeee. BAAT KHATAM.",
-
-                "Roro has officially surrendered.",
-
-                "As always… baat khatam."
-
+        const response =
+            responses[
+                Math.floor(Math.random() * responses.length)
             ];
 
+        baatResponse.textContent = response;
 
-            const response =
-                responses[
-                    Math.floor(
-                        Math.random() *
-                        responses.length
-                    )
-                ];
-
-
-            baatResponse.textContent =
-                response;
-
-
-            baatResponse.animate(
-
-                [
-                    {
-                        opacity: 0,
-                        transform:
-                            "translateY(10px)"
-                    },
-
-                    {
-                        opacity: 1,
-                        transform:
-                            "translateY(0)"
-                    }
-
-                ],
-
+        baatResponse.animate(
+            [
                 {
-                    duration: 450,
-
-                    easing: "ease-out"
+                    opacity: 0,
+                    transform: "translateY(10px)"
+                },
+                {
+                    opacity: 1,
+                    transform: "translateY(0)"
                 }
-
-            );
-
-        }
-    );
-
+            ],
+            {
+                duration: 450,
+                easing: "ease-out"
+            }
+        );
+    });
 }
 
 
 /* =========================================================
-   VIDEO
+   FIRST VIDEO
+   Stop Dildaara permanently on first playback.
 ========================================================= */
 
 const coupleVideo =
-    document.getElementById(
-        "coupleVideo"
-    );
-
-let videoHasBeenPlayed = false;
-
+    document.getElementById("coupleVideo");
 
 if (coupleVideo) {
+    coupleVideo.addEventListener("play", function () {
 
-    coupleVideo.addEventListener(
-        "play",
-        function () {
+        if (!videoHasBeenPlayed) {
+            videoHasBeenPlayed = true;
 
-            /*
-             * The first time the video is played,
-             * permanently stop Dildaara.
-             */
-
-            if (!videoHasBeenPlayed) {
-
-                videoHasBeenPlayed = true;
-
-                if (audio) {
-
-                    audio.pause();
-
-                    audio.currentTime = 0;
-
-                }
-
+            if (audio) {
+                audio.pause();
+                audio.currentTime = 0;
+                musicPlaying = false;
             }
-
         }
-    );
-
+    });
 }
+
 
 /* =========================================================
    HERO PARALLAX
 ========================================================= */
 
 const heroContent =
-    document.querySelector(
-        ".hero-content"
-    );
-
+    document.querySelector(".hero-content");
 
 window.addEventListener(
     "scroll",
     function () {
-
         if (!heroContent) {
             return;
         }
 
+        const scroll = window.scrollY;
 
-        const scroll =
-            window.scrollY;
-
-
-        if (
-            scroll <
-            window.innerHeight
-        ) {
-
+        if (scroll < window.innerHeight) {
             heroContent.style.transform =
                 `translateY(${scroll * 0.18}px)`;
 
-
             heroContent.style.opacity =
-                Math.max(
-                    0,
-                    1 - scroll / 650
-                );
-
+                Math.max(0, 1 - scroll / 650);
         }
-
     },
     {
         passive: true
@@ -417,79 +259,40 @@ window.addEventListener(
 ========================================================= */
 
 const imageCards =
-    document.querySelectorAll(
-        ".photo-card, .memory-card"
-    );
+    document.querySelectorAll(".photo-card, .memory-card");
 
+imageCards.forEach(function (card) {
 
-imageCards.forEach(
-    function (card) {
+    card.addEventListener("mousemove", function (event) {
+        if (window.innerWidth < 800) {
+            return;
+        }
 
+        const rect = card.getBoundingClientRect();
 
-        card.addEventListener(
-            "mousemove",
-            function (event) {
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
 
-                if (
-                    window.innerWidth < 800
-                ) {
-                    return;
-                }
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
 
+        const rotateX =
+            ((y - centerY) / centerY) * -2;
 
-                const rect =
-                    card.getBoundingClientRect();
+        const rotateY =
+            ((x - centerX) / centerX) * 2;
 
+        card.style.transform =
+            `perspective(1000px)
+             rotateX(${rotateX}deg)
+             rotateY(${rotateY}deg)`;
+    });
 
-                const x =
-                    event.clientX -
-                    rect.left;
-
-
-                const y =
-                    event.clientY -
-                    rect.top;
-
-
-                const centerX =
-                    rect.width / 2;
-
-
-                const centerY =
-                    rect.height / 2;
-
-
-                const rotateX =
-                    ((y - centerY) /
-                        centerY) * -2;
-
-
-                const rotateY =
-                    ((x - centerX) /
-                        centerX) * 2;
-
-
-                card.style.transform =
-                    `perspective(1000px)
-                     rotateX(${rotateX}deg)
-                     rotateY(${rotateY}deg)`;
-
-            }
-        );
-
-
-        card.addEventListener(
-            "mouseleave",
-            function () {
-
-                card.style.transform =
-                    "perspective(1000px) rotateX(0) rotateY(0)";
-
-            }
-        );
-
-    }
-);
+    card.addEventListener("mouseleave", function () {
+        card.style.transform =
+            "perspective(1000px) rotateX(0) rotateY(0)";
+    });
+});
 
 
 /* =========================================================
@@ -497,33 +300,15 @@ imageCards.forEach(
 ========================================================= */
 
 const finalHeart =
-    document.getElementById(
-        "finalHeart"
-    );
-
+    document.getElementById("finalHeart");
 
 if (finalHeart) {
+    finalHeart.addEventListener("click", function () {
 
-    finalHeart.addEventListener(
-        "click",
-        function () {
-
-            for (
-                let i = 0;
-                i < 15;
-                i++
-            ) {
-
-                setTimeout(
-                    createHeart,
-                    i * 80
-                );
-
-            }
-
+        for (let i = 0; i < 15; i++) {
+            setTimeout(createHeart, i * 80);
         }
-    );
-
+    });
 }
 
 
@@ -531,27 +316,16 @@ if (finalHeart) {
    PREVENT IMAGE DRAGGING
 ========================================================= */
 
-document
-    .querySelectorAll("img")
-    .forEach(
-        function (image) {
-
-            image.addEventListener(
-                "dragstart",
-                function (event) {
-
-                    event.preventDefault();
-
-                }
-            );
-
-        }
-    );
+document.querySelectorAll("img").forEach(function (image) {
+    image.addEventListener("dragstart", function (event) {
+        event.preventDefault();
+    });
+});
 
 
-/* =========================
+/* =========================================================
    PIXEL HEART CURSOR
-========================= */
+========================================================= */
 
 const pixelHeartCursor = document.createElement("div");
 
@@ -560,27 +334,17 @@ pixelHeartCursor.className = "pixel-heart-cursor";
 document.body.appendChild(pixelHeartCursor);
 
 document.addEventListener("mousemove", function (event) {
-
-    pixelHeartCursor.style.left =
-        event.clientX + "px";
-
-    pixelHeartCursor.style.top =
-        event.clientY + "px";
-
+    pixelHeartCursor.style.left = event.clientX + "px";
+    pixelHeartCursor.style.top = event.clientY + "px";
     pixelHeartCursor.style.opacity = "1";
-
 });
 
 document.addEventListener("mouseleave", function () {
-
     pixelHeartCursor.style.opacity = "0";
-
 });
 
 document.addEventListener("mouseenter", function () {
-
     pixelHeartCursor.style.opacity = "1";
-
 });
 
 const heartHoverElements = document.querySelectorAll(
@@ -588,53 +352,74 @@ const heartHoverElements = document.querySelectorAll(
 );
 
 heartHoverElements.forEach(function (element) {
-
     element.addEventListener("mouseenter", function () {
-
         pixelHeartCursor.classList.add("hovering");
-
     });
 
     element.addEventListener("mouseleave", function () {
-
         pixelHeartCursor.classList.remove("hovering");
-
     });
-
 });
 
 
-/* Create the YouTube video */
+/* =========================================================
+   FINAL YOUTUBE SURPRISE
+   Only create and scroll to the video after the button
+   is clicked. Never run this automatically on page load.
+========================================================= */
 
-const wishingVideo =
-    document.createElement("iframe");
+const wishingButton =
+    document.getElementById("wishingButton");
 
-wishingVideo.className = "wishing-video";
-wishingVideo.id = "wishingVideo";
+const wishingVideoContainer =
+    document.getElementById("wishingVideoContainer");
 
-wishingVideo.src =
-    "https://www.youtube.com/embed/zW6oFMEHHfY?autoplay=1&playsinline=1&rel=0";
+if (wishingButton && wishingVideoContainer) {
 
-wishingVideo.title = "A special birthday surprise for Navya";
+    wishingButton.addEventListener("click", function () {
 
-wishingVideo.allow =
-    "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+        // Do not create a second video if already opened.
+        if (wishingVideoContainer.querySelector("iframe")) {
+            return;
+        }
 
-wishingVideo.allowFullscreen = true;
-wishingVideo.referrerPolicy = "strict-origin-when-cross-origin";
+        // Fade out the final surprise text.
+        wishingButton.classList.add("fade-out");
 
-/* Add it to the existing page */
-wishingVideoContainer.appendChild(wishingVideo);
+        // Create the YouTube player only after this click.
+        const wishingVideo =
+            document.createElement("iframe");
 
-/* Reveal the video */
-requestAnimationFrame(function () {
-    wishingVideoContainer.classList.add("show");
-});
+        wishingVideo.className = "wishing-video";
+        wishingVideo.id = "wishingVideo";
 
-/* Scroll to the new video */
-setTimeout(function () {
-    wishingVideo.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
+        wishingVideo.src =
+            "https://www.youtube.com/embed/zW6oFMEHHfY?autoplay=1&playsinline=1&rel=0";
+
+        wishingVideo.title =
+            "A special birthday surprise for Navya";
+
+        wishingVideo.allow =
+            "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+
+        wishingVideo.allowFullscreen = true;
+
+        wishingVideo.referrerPolicy =
+            "strict-origin-when-cross-origin";
+
+        wishingVideoContainer.appendChild(wishingVideo);
+
+        // Reveal the video.
+        requestAnimationFrame(function () {
+            wishingVideoContainer.classList.add("show");
+        });
+
+        // Scroll only now, after the final button is clicked.
+        setTimeout(function () {
+            wishingVideo.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+        }, 300);
     });
-}, 300);
+}

@@ -1417,10 +1417,16 @@ body * {
 
 /* Actual video */
 
+
 .wishing-video {
     display: block;
     width: 100%;
+    aspect-ratio: 16 / 9;
     height: auto;
+    border: none;
+    border-radius: 18px;
+}
+
 
     border-radius: 18px;
 
